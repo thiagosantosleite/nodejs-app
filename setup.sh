@@ -20,6 +20,7 @@ cat ~/.profile
 ## install pm2 and start app using one processo for each cpu
 npm install pm2 -g
 cd src
+npm install
 pm2 start app.js -i max 
 
 

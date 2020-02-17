@@ -172,9 +172,38 @@ Note: log_format  is  '[\$time_local] - "\$request" \$status'
 
 ````
 
-# Send Mail
+# Send Mail with access logs report
 We have 2 version to send the out.out file by mail:
 - bash version /logs/sMail.sh
 - python version /logs/sMail.py
 
 Note: First fix the user, password and smtp server, if you are using gmail you need first allow "unsafe app send emails" in the account security configuration
+
+
+# Deploy the new version / Rollback
+There is no downtime, because the task is done by "pm2 reload app"
+
+````
+[root@ip-172-31-85-242 nodejs-app]# ./deploy.sh
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+From https://github.com/thiagosantosleite/nodejs-app
+   9c24636..0cf3dfa  master     -> origin/master
+Updating 9c24636..0cf3dfa
+Fast-forward
+ src/app.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+audited 126 packages in 0.56s
+found 0 vulnerabilities
+
+Use --update-env to update environment variables
+[PM2] Applying action reloadProcessId on app [app](ids: [ 0, 1 ])
+[PM2] [app](0) ✓
+[PM2] [app](1) ✓
+/root/nodejs-app
+````
+
+Note: If you need a rollback or deploy a new version, then first fix in git and then run this script to redeploy.

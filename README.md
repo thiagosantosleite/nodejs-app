@@ -146,4 +146,27 @@ Percentage of the requests served within a certain time (ms)
  100%   1034 (longest request)
 ````
 
+# Parser logs
+We have 2 version to parse the nginx logs:
+- bash version /logs/parser.sh
+- python version /logs/parser.py
 
+Both script generate the file out.out that is used by the send mail script.
+````
+[root@ip-172-31-85-242 logs]# ./parser.sh
+ 128126 /  200
+   1554 /  500
+    579 /  499
+      3 /  502
+      2 /favicon.ico  502
+      2 /  304
+      1 /favicon.ico  404
+
+````
+
+# Send Mail
+We have 2 version to send the out.out file by mail:
+- bash version /logs/sMail.sh
+- python version /logs/sMail.py
+
+Note: First fix the user, password and smtp server, if you are using gmail you need first allow "unsafe app send emails" in the account security configuration

@@ -13,6 +13,11 @@ cd nodejs-app/
 ## export the public ip 
 export SITE_IP=34.201.38.56
 ./setup.sh
+
+[root@ip-172-31-85-242 nodejs-app]# curl -k https://$SITE_IP
+Hello World!
+[root@ip-172-31-85-242 nodejs-app]# curl http://$SITE_IP
+Hello World!
 ```
 
 # Run the load tests
@@ -152,6 +157,9 @@ We have 2 version to parse the nginx logs:
 - python version /logs/parser.py
 
 Both script generate the file out.out that is used by the send mail script.
+
+Note: log_format  is  '[\$time_local] - "\$request" \$status'
+
 ````
 [root@ip-172-31-85-242 logs]# ./parser.sh
  128126 /  200
